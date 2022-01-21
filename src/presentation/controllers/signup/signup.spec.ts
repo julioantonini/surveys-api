@@ -50,7 +50,7 @@ const makeSut = (): SutType => {
 };
 
 describe("signUp Controller", () => {
-  test("Shoud return 400 if no name is provided", async () => {
+  test("Should return 400 if no name is provided", async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -64,7 +64,7 @@ describe("signUp Controller", () => {
     expect(httpResponse.body).toEqual(new MissingParamError("name"));
   });
 
-  test("Shoud return 400 if no e-mail is provided", async () => {
+  test("Should return 400 if no e-mail is provided", async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -78,7 +78,7 @@ describe("signUp Controller", () => {
     expect(httpResponse.body).toEqual(new MissingParamError("email"));
   });
 
-  test("Shoud return 400 if no password is provided", async () => {
+  test("Should return 400 if no password is provided", async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -92,7 +92,7 @@ describe("signUp Controller", () => {
     expect(httpResponse.body).toEqual(new MissingParamError("password"));
   });
 
-  test("Shoud return 400 if no password confirmation is provided", async () => {
+  test("Should return 400 if no password confirmation is provided", async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -108,7 +108,7 @@ describe("signUp Controller", () => {
     );
   });
 
-  test("Shoud return 400 if password confirmation fails", async () => {
+  test("Should return 400 if password confirmation fails", async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -125,7 +125,7 @@ describe("signUp Controller", () => {
     );
   });
 
-  test("Shoud return 400 if provided email is invalid", async () => {
+  test("Should return 400 if provided email is invalid", async () => {
     const { sut, emailValidatorStub } = makeSut();
     jest.spyOn(emailValidatorStub, "isValid").mockReturnValueOnce(false);
     const httpRequest = {
@@ -141,7 +141,7 @@ describe("signUp Controller", () => {
     expect(httpResponse.body).toEqual(new InvalidParamError("email"));
   });
 
-  test("Shoud call EmailValidator with correct email", async () => {
+  test("Should call EmailValidator with correct email", async () => {
     const { sut, emailValidatorStub } = makeSut();
     const isValidSpy = jest.spyOn(emailValidatorStub, "isValid");
     const httpRequest = {
@@ -156,7 +156,7 @@ describe("signUp Controller", () => {
     expect(isValidSpy).toHaveBeenCalledWith("any_email@mail.com");
   });
 
-  test("Shoud return 500 if email validator throw", async () => {
+  test("Should return 500 if email validator throw", async () => {
     const { sut, emailValidatorStub } = makeSut();
     jest.spyOn(emailValidatorStub, "isValid").mockImplementationOnce(() => {
       throw new Error();
@@ -175,7 +175,7 @@ describe("signUp Controller", () => {
     expect(httpResponse.body).toEqual(new ServerError());
   });
 
-  test("Shoud return 500 if addAccount throw", async () => {
+  test("Should return 500 if addAccount throw", async () => {
     const { sut, addAccountStub } = makeSut();
     jest.spyOn(addAccountStub, "add").mockImplementationOnce(async () => {
       return new Promise((resolve, reject) => reject(new Error()));
@@ -194,7 +194,7 @@ describe("signUp Controller", () => {
     expect(httpResponse.body).toEqual(new ServerError());
   });
 
-  test("Shoud call AddAccount with correct values", async () => {
+  test("Should call AddAccount with correct values", async () => {
     const { sut, addAccountStub } = makeSut();
     const addSpy = jest.spyOn(addAccountStub, "add");
     const httpRequest = {
@@ -213,7 +213,7 @@ describe("signUp Controller", () => {
     });
   });
 
-  test("Shoud return 200 if valid data is provided", async () => {
+  test("Should return 200 if valid data is provided", async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {

@@ -15,6 +15,10 @@ export const adaptRoute = (controller: Controller) => {
       httpRequest
     );
 
-    res.status(statusCode).send(body);
+    if (statusCode === 200) {
+      res.status(statusCode).send(body);
+    } else {
+      res.status(statusCode).send({ error: body.message });
+    }
   };
 };

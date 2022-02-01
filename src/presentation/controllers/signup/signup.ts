@@ -1,5 +1,5 @@
-import { badRequest, serverError } from "../../helpers/http-helper";
-import { ok } from "./../../helpers/http-helper";
+import { badRequest, serverError } from "../../helpers/http/http-helper";
+import { ok } from "./../../helpers/http/http-helper";
 import { Validation } from "./../../helpers/validators/validation";
 import {
   AddAccount,

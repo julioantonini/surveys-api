@@ -1,6 +1,7 @@
 import { badRequest, serverError } from "../../helpers/http/http-helper";
+import { Validation } from "../../protocols/validation";
 import { ok } from "./../../helpers/http/http-helper";
-import { Validation } from "./../../helpers/validators/validation";
+
 import {
   AddAccount,
   Controller,
